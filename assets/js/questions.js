@@ -96,10 +96,10 @@ answer: "a)	DOM is short for 'Document Object Model', the document object the br
 ,
 {prompt: "10.	What goes in place of a and b in this standard event listener?\nelement.addEventListener('a','b');",
 choices: 
-["a)	a: the event name\nb: the function to call when the event fires",
-"b)	a: the actions to perform when the event fires\nb: the name of the event",
-"c)	a: the count of how many such event listeners are defined\nb: an array of functions to call when the event fires",
-"d)	a: the function to call when the event fires\nb: the object ID of the element"
+["a)	a: the event name;\nb: the function to call when the event fires",
+"b)	a: the actions to perform when the event fires;\nb: the name of the event",
+"c)	a: the count of how many such event listeners are defined;\nb: an array of functions to call when the event fires",
+"d)	a: the function to call when the event fires;\nb: the object ID of the element"
 
 ],
 answer: "a)	a: the event name\nb: the function to call when the event fires"
@@ -167,37 +167,23 @@ function getQuestion() {
     ); 
 } 
 
+//set up conditions for correct/wrong answers, 10s penalty
 function questionClick() { 
-    if ( 
-        this.value !== 
-        questions[currentQuestionIndex] 
-            .answer 
-    ) { 
-        time -= 200; 
+    if (this.value !== questions[currentQuestionIndex].answer) { 
+        time -= 10; 
         if (time < 0) { 
             time = 0; 
         } 
         timerEl.textContent = time; 
         feedbackEl.textContent = "Oops!"; 
-    } else { 
-        feedbackEl.textContent = 
-            "Correct!"; 
+    } else {feedbackEl.textContent = "Correct!"; 
     } 
-    feedbackEl.setAttribute( 
-        "class", 
-        "feedback"
-    ); 
+    feedbackEl.setAttribute("class", "feedback"); 
     setTimeout(function () { 
-        feedbackEl.setAttribute( 
-            "class", 
-            "feedback hide"
-        ); 
-    }, 2000); 
+        feedbackEl.setAttribute("class", "feedback hide"); 
+    }, 1000); 
     currentQuestionIndex++; 
-    if ( 
-        currentQuestionIndex === 
-        questions.length 
-    ) { 
+    if (currentQuestionIndex === questions.length) { 
         quizEnd(); 
     } else { 
         getQuestion(); 
@@ -217,7 +203,7 @@ function quizEnd() {
         document.getElementById( 
             "final-score"
         ); 
-    finalScoreEl.textContent = time; 
+    finalScoreEl.textContent = time/2; 
     questionsEl.setAttribute( 
         "class", 
         "hide"
@@ -238,16 +224,16 @@ function clockTick() {
 // Along with users' name 
   
 function saveHighscore() { 
-    let name = nameEl.value.trim(); 
+    var name = nameEl.value.trim(); 
     if (name !== "") { 
-        let highscores = 
+        var highscores = 
             JSON.parse( 
                 window.localStorage.getItem( 
                     "highscores"
                 ) 
             ) || []; 
-        let newScore = { 
-            score: time, 
+        var newScore = { 
+            score: time/2, 
             name: name, 
         }; 
         highscores.push(newScore); 
