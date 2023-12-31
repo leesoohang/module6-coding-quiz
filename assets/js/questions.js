@@ -124,50 +124,45 @@ var feedbackEl = document.querySelector(
 var reStartBtn = 
     document.querySelector("#restart"); 
 
-
+//set the time limit to 200 seconds for 10 questions
 var currentQuestionIndex = 0; 
 var time = 200 ; 
 var timerId; 
 
+//function triggers when Start Quiz button is hit
 function quizStart() { 
     timerId = setInterval( 
         clockTick, 
         1000 
     ); 
     timerEl.textContent = time; 
-    var landingScreenEl = 
+    var startScreenEl = 
         document.getElementById("start-screen"); 
-    landingScreenEl.setAttribute("class", "hide"); 
-    questionsEl.removeAttribute( "class"); 
+//start screen will be hidden and questions will show
+    startScreenEl.setAttribute("class", "hide"); 
+    questionsEl.removeAttribute("class"); 
     getQuestion(); 
 } 
 
-
+//function to get all questions rolling in order
 function getQuestion() { 
-    let currentQuestion = 
+    var currentQuestion = 
         questions[currentQuestionIndex]; 
-    let promptEl = 
+    var promptEl = 
         document.getElementById("question-title"); 
     promptEl.textContent = 
         currentQuestion.prompt; 
     choicesEl.innerHTML = ""; 
+//use forEach method to modify each choice and create the buttons for selection
     currentQuestion.choices.forEach( 
         function (choice, i) { 
-            let choiceBtn = 
-                document.createElement( 
-                    "button"
-                ); 
-            choiceBtn.setAttribute( 
-                "value", 
-                choice 
-            ); 
+            var choiceBtn = 
+                document.createElement("button"); 
+            choiceBtn.setAttribute("value", choice); 
             choiceBtn.textContent = 
                 i + 1 + ". " + choice; 
-            choiceBtn.onclick = 
-                questionClick; 
-            choicesEl.appendChild( 
-                choiceBtn 
-            ); 
+            choiceBtn.onclick = questionClick; 
+            choicesEl.appendChild(choiceBtn); 
         } 
     ); 
 } 
