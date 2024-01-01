@@ -48,10 +48,10 @@ choices:
     "d)	The SWITCH statement returns an error. Each switch case should be unique."
     
 ],
-answer: "c)	The SWITCH statement returns the first case that resolves to TRUE , then stops.",
+answer: "c)	The SWITCH statement returns the first case that resolves to TRUE, then stops.",
 }
 ,
-{prompt: "6.	What is the new value of myArray after this script executes?\nconst myArray = [1, 2, 3, 4]\nmyArray.forEach( (item, index) = > {\nmyArray[index] = ++item;\n});",
+{prompt: "6.	What is the new value of myArray after this script executes?   const myArray = [1, 2, 3, 4]  myArray.forEach( (item, index) = > {  myArray[index] = ++item;  });",
 choices: 
 ["a) [1 2,3,4,2,3,4,5]",
 "b)	[1,2,3,4]",
@@ -80,7 +80,7 @@ choices:
 "d)	At the top of the HTML document."
 
 ],
-answer: "a)	Nowhere: The element is created, but has not been added to the DOM.",
+answer: "a) Nowhere: The element is created, but has not been added to the DOM.",
 }
 ,
 {prompt: "9.	What is the 'DOM'?",
@@ -102,7 +102,7 @@ choices:
 "d)	a: the function to call when the event fires;\nb: the object ID of the element"
 
 ],
-answer: "a)	a: the event name\nb: the function to call when the event fires"
+answer: "a) a: the event name;\nb: the function to call when the event fires"
 }
 ]
 
