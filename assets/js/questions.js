@@ -9,7 +9,7 @@ choices:
 answer: "b)	numbers[1]",
 }
 ,
-{prompt: "2.	What is logged in the console after this code is executed?\nlet sum = 23.95;\nlet tip = '3';\nconsole.log('The total is $' + sum + tip + '.');",
+{prompt: "2.	What is logged in the console after this code is executed?\nvar sum = 23.95;\nvar tip = '3';\nconsole.log('The total is $' + sum + tip + '.');",
 choices: 
 ["a)	Syntax error.",
 "b)	'The total is $26.95 + 3'",
@@ -107,22 +107,14 @@ answer: "a)	a: the event name\nb: the function to call when the event fires"
 ]
 
 //set up DOM variables
-var questionsEl = 
-    document.querySelector("#questions"); 
-var timerEl = 
-    document.querySelector("#time"); 
-var choicesEl = 
-    document.querySelector("#choices"); 
+var questionsEl = document.querySelector("#questions"); 
+var timerEl = document.querySelector("#time"); 
+var choicesEl = document.querySelector("#choices"); 
 var submitBtn = document.querySelector("#submit"); 
-var startBtn = 
-    document.querySelector("#start"); 
-var nameEl = 
-    document.querySelector("#name"); 
-var feedbackEl = document.querySelector( 
-    "#feedback"
-); 
-var reStartBtn = 
-    document.querySelector("#restart"); 
+var startBtn = document.querySelector("#start"); 
+var nameEl = document.querySelector("#name"); 
+var feedbackEl = document.querySelector("#feedback"); 
+var reStartBtn = document.querySelector("#restart"); 
 
 //set the time limit to 200 seconds for 10 questions
 var currentQuestionIndex = 0; 
@@ -131,10 +123,7 @@ var timerId;
 
 //function triggers when Start Quiz button is hit
 function quizStart() { 
-    timerId = setInterval( 
-        clockTick, 
-        1000 
-    ); 
+    timerId = setInterval(countdown, 1000); 
     timerEl.textContent = time; 
     var startScreenEl = 
         document.getElementById("start-screen"); 
@@ -159,18 +148,17 @@ function getQuestion() {
             var choiceBtn = 
                 document.createElement("button"); 
             choiceBtn.setAttribute("value", choice); 
-            choiceBtn.textContent = 
-                i + 1 + ". " + choice; 
+            choiceBtn.textContent = choice;
             choiceBtn.onclick = questionClick; 
             choicesEl.appendChild(choiceBtn); 
         } 
     ); 
 } 
 
-//set up conditions for correct/wrong answers, 10s penalty
+//set up conditions for correct/wrong answers, 20s penalty
 function questionClick() { 
     if (this.value !== questions[currentQuestionIndex].answer) { 
-        time -= 10; 
+        time -= 20; 
         if (time < 0) { 
             time = 0; 
         } 
@@ -196,27 +184,16 @@ function questionClick() {
 
 function quizEnd() { 
     clearInterval(timerId); 
-    let endScreenEl = 
-        document.getElementById( 
-            "end-screen"
-        ); 
-    endScreenEl.removeAttribute( 
-        "class"
-    ); 
-    let finalScoreEl = 
-        document.getElementById( 
-            "final-score"
-        ); 
+    var endScreenEl = document.getElementById("end-screen"); 
+    endScreenEl.removeAttribute("class"); 
+    var finalScoreEl = 
+        document.getElementById("final-score"); 
     finalScoreEl.textContent = time/2; 
-    questionsEl.setAttribute( 
-        "class", 
-        "hide"
-    ); 
+    questionsEl.setAttribute("class", "hide"); 
 } 
   
-// End quiz if timer reaches 0 
-  
-function clockTick() { 
+//game over when time is up  
+function countdown() { 
     time--; 
     timerEl.textContent = time; 
     if (time <= 0) { 
@@ -224,18 +201,11 @@ function clockTick() {
     } 
 } 
 
-// Save score in local storage 
-// Along with users' name 
-  
+//save to local storage
 function saveHighscore() { 
     var name = nameEl.value.trim(); 
     if (name !== "") { 
-        var highscores = 
-            JSON.parse( 
-                window.localStorage.getItem( 
-                    "highscores"
-                ) 
-            ) || []; 
+        var highscores = JSON.parse(window.localStorage.getItem("highscores")) || []; 
         var newScore = { 
             score: time/2, 
             name: name, 
@@ -249,20 +219,8 @@ function saveHighscore() {
     } 
 } 
   
-// Save users' score after pressing enter 
-  
-function checkForEnter(event) { 
-    if (event.key === "Enter") { 
-        saveHighscore(); 
-        window.open("highscores.html","_self"); 
-    } 
-} 
-nameEl.onkeyup = checkForEnter; 
-  
-// Save users' score after clicking submit 
-  
+//save scores when clicking submit button  
 submitBtn.onclick = saveHighscore; 
-  
-// Start quiz after clicking start quiz 
-  
+
+//Start quiz after clicking start quiz 
 startBtn.onclick = quizStart;
