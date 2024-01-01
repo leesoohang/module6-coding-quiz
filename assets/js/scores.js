@@ -1,48 +1,30 @@
-var scoresBtn = document.querySelector( 
-	"#view-high-scores"
-); 
+var scoresBtn = document.querySelector("#view-high-scores"); 
 
-// Rank previous scores in order by 
-// Retrieving scores from localStorage 
+
+//get score data from localStorage 
 
 function printHighscores() { 
-	let highscores = 
-		JSON.parse( 
-			window.localStorage.getItem( 
-				"highscores"
-			) 
-		) || []; 
+	var highscores = 
+		JSON.parse(window.localStorage.getItem("highscores")) || []; 
+//sort scores in descending order 
 	highscores.sort(function (a, b) { 
 		return b.score - a.score; 
 	}); 
-	highscores.forEach(function ( 
-		score 
-	) { 
-		let liTag = 
-			document.createElement( 
-				"li"
-			); 
-		liTag.textContent = 
-			score.name + 
-			" - " + 
-			score.score; 
-		let olEl = 
-			document.getElementById( 
-				"highscores"
-			); 
-		olEl.appendChild(liTag); 
+	highscores.forEach(function (record) { 
+		var list = 
+			document.createElement("li"); 
+		list.textContent = record.name + " - " + record.score; 
+		var olEl = 
+			document.getElementById("highscores"); 
+		olEl.appendChild(list); 
 	}); 
 } 
 
 // Clear previous scores when users click clear 
 function clearHighscores() { 
-	window.localStorage.removeItem( 
-		"highscores"
-	); 
+	window.localStorage.removeItem("highscores"); 
 	window.location.reload(); 
 } 
-document.getElementById( 
-	"clear"
-).onclick = clearHighscores; 
+document.getElementById("clear").onclick = clearHighscores; 
 
 printHighscores();
