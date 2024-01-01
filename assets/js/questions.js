@@ -40,15 +40,15 @@ choices:
 answer: "d)	This code will error out.",
 }
 ,
-{prompt: "5.	In a <i>switch</i> statement, what happens when several of the switch cases resolve to True?",
+{prompt: "5.	In a SWITCH statement, what happens when several of the SWITCH cases resolve to TRUE?",
 choices: 
-["a) The <i>switch</i> statement returns all cases that resolves to <i>true</i> , then stops.",
-    "b)	The <i>switch</i> statement returns the last case that resolves to <i>true</i> , then stops.",
-    "c)	The <i>switch</i> statement returns the first case that resolves to <i>true</i> , then stops.",
-    "d)	The switch statement returns an error. Each switch case should be unique."
+["a) The SWITCH statement returns all cases that resolves to TRUE, then stops.",
+    "b)	The SWITCH statement returns the last case that resolves to TRUE, then stops.",
+    "c)	The SWITCH statement returns the first case that resolves to TRUE, then stops.",
+    "d)	The SWITCH statement returns an error. Each switch case should be unique."
     
 ],
-answer: "c)	The <i>switch</i> statement returns the first case that resolves to <i>true</i> , then stops.",
+answer: "c)	The SWITCH statement returns the first case that resolves to TRUE , then stops.",
 }
 ,
 {prompt: "6.	What is the new value of myArray after this script executes?\nconst myArray = [1, 2, 3, 4]\nmyArray.forEach( (item, index) = > {\nmyArray[index] = ++item;\n});",
@@ -198,7 +198,7 @@ function countdown() {
     time--; 
     timerEl.textContent = time; 
     if (time <= 0) { 
-        quizEnd(); 
+        quizEnd();
     } 
 } 
 
