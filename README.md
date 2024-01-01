@@ -20,6 +20,10 @@ N/A
 ## Usage
 The coding quiz application can be found in ‘index.html’. The stylesheet, scripts and audio files are stored respectively in ‘css’, ‘js’ and ‘sfx’ folders. In ‘highscores.html’, the record of quiz scores is displayed, retrieved from local storage.
 
+Screenshots:
+![questions](./assets/screenshot-questions.png)
+![highscores](./assets/screenshot-highscores.png)
+
 ## Credits
 The DOM in JavaScript, jQuery, AngularJS, and React by Christian Hur on LinkedIn Learning: 
 

@@ -113,13 +113,16 @@ var choicesEl = document.querySelector("#choices");
 var submitBtn = document.querySelector("#submit"); 
 var startBtn = document.querySelector("#start"); 
 var nameEl = document.querySelector("#name"); 
-var feedbackEl = document.querySelector("#feedback"); 
-var reStartBtn = document.querySelector("#restart"); 
+var feedbackEl = document.querySelector("#feedback");
+var scoreEl = document.getElementById("final-score");
+var reStartBtn = document.querySelector("#restart");
+
 
 //set the time limit to 200 seconds for 10 questions
 var currentQuestionIndex = 0; 
 var time = 200 ; 
-var timerId; 
+var timerId;
+var currentScore = 0
 
 //function triggers when Start Quiz button is hit
 function quizStart() { 
@@ -169,7 +172,8 @@ function questionClick() {
         wrongAudio.play(); 
     } else {feedbackEl.textContent = "Correct!";
     var correctAudio = new Audio("./assets/sfx/correct.wav");
-        correctAudio.play(); 
+        correctAudio.play();
+        currentScore += 10;
     } 
     feedbackEl.setAttribute("class", "feedback"); 
     setTimeout(function () { 
@@ -187,9 +191,7 @@ function quizEnd() {
     clearInterval(timerId); 
     var endScreenEl = document.getElementById("end-screen"); 
     endScreenEl.removeAttribute("class"); 
-    var finalScoreEl = 
-        document.getElementById("final-score"); 
-    finalScoreEl.textContent = time/2; 
+    scoreEl.textContent = currentScore;
     questionsEl.setAttribute("class", "hide"); 
 } 
   
@@ -208,7 +210,7 @@ function saveHighscore() {
     if (name !== "") { 
         var highscores = JSON.parse(window.localStorage.getItem("highscores")) || []; 
         var newScore = { 
-            score: time/2, 
+            score: currentScore, 
             name: name, 
         }; 
         highscores.push(newScore); 
