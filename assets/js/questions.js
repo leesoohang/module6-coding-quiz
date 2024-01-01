@@ -175,8 +175,12 @@ function questionClick() {
             time = 0; 
         } 
         timerEl.textContent = time; 
-        feedbackEl.textContent = "Oops!"; 
-    } else {feedbackEl.textContent = "Correct!"; 
+        feedbackEl.textContent = "Oops!";
+        var wrongAudio = new Audio("./assets/sfx/incorrect.wav");
+        wrongAudio.play(); 
+    } else {feedbackEl.textContent = "Correct!";
+    var correctAudio = new Audio("./assets/sfx/correct.wav");
+        correctAudio.play(); 
     } 
     feedbackEl.setAttribute("class", "feedback"); 
     setTimeout(function () { 
@@ -241,9 +245,7 @@ function saveHighscore() {
             "highscores", 
             JSON.stringify(highscores) 
         ); 
-        alert( 
-            "Your Score has been Submitted"
-        ); 
+        window.open("highscores.html","_self"); 
     } 
 } 
   
@@ -252,9 +254,7 @@ function saveHighscore() {
 function checkForEnter(event) { 
     if (event.key === "Enter") { 
         saveHighscore(); 
-        alert( 
-            "Your Score has been Submitted"
-        ); 
+        window.open("highscores.html","_self"); 
     } 
 } 
 nameEl.onkeyup = checkForEnter; 
